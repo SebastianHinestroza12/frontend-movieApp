@@ -1,9 +1,9 @@
-import { Navbar } from "../Navbar/Navbar";
+import { Poster } from "../Poster/Poster";
 
 export const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Poster />
     </div>
   );
 };
