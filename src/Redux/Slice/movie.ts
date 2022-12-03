@@ -32,3 +32,9 @@ export const postUser = (userData: any) => {
     return AppDispatch(json.data);
   };
 };
+export const loginUser = (userData: any) => {
+  return async function (AppDispatch: any) {
+    let json = await axios.post("http://localhost:3001/login", userData);
+    return AppDispatch(json.data);
+  };
+};

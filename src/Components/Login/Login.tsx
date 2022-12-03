@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -10,9 +10,51 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
+import { useAppDispatch } from "../../Redux/Store/hook";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { loginUser } from "../../Redux/Slice/movie";
+
+type FormValues = {
+  email: string;
+  password: string;
+};
+
+const schema = yup
+  .object({
+    email: yup.string().email("Debe ser formato email").required(),
+    password: yup.string().trim().required().min(6),
+  })
+  .required();
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
+
+  const toast = useToast();
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+    dispatch(loginUser(data));
+    toast({
+      position: "top",
+      title: `Bienvenido ${data.email}`,
+      status: "success",
+      duration: 5000,
+      isClosable: false,
+    });
+    navigate("/");
+  };
+
   return (
     <Flex
       minH={"100vh"}
@@ -36,11 +78,20 @@ export const Login = () => {
           <Stack spacing={4}>
             <FormControl id="email" isRequired>
               <FormLabel>Email</FormLabel>
-              <Input type="email" />
+              <Input {...register("email", { required: true })} type="email" />
+              <p>{errors.email?.message}</p>
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Contraseña</FormLabel>
-              <Input type="password" />
+              <Input
+                {...register("password", {
+                  required: true,
+                  maxLength: 30,
+                  minLength: 6,
+                })}
+                type="password"
+              />
+              <p>{errors.password?.message}</p>
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -53,6 +104,7 @@ export const Login = () => {
                 </Link>
               </Stack>
               <Button
+                onClick={handleSubmit(onSubmit)}
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
