@@ -1,0 +1,9 @@
+.prueba {
+  /* border: 1px solid #ccc; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  cursor: pointer;
+  width: 80vw;
+  margin: 0 auto;
+}

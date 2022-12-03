@@ -18,14 +18,14 @@ export const Navbar = () => {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={useColorModeValue("transparent", "transparent")}
+        color={useColorModeValue("transparent", "transparent")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor={useColorModeValue("transparent", "transparent")}
         align={"center"}
       >
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
@@ -55,6 +55,7 @@ export const Navbar = () => {
               _hover={{
                 bg: "red.400",
               }}
+              color={useColorModeValue("white", "white")}
             >
               Iniciar Sessión
             </Button>
@@ -62,6 +63,7 @@ export const Navbar = () => {
 
           <Link to="/register">
             <Button
+              color={useColorModeValue("white", "white")}
               display={{ base: "none", md: "inline-flex" }}
               fontSize={"sm"}
               fontWeight={600}

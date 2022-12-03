@@ -1,0 +1,13 @@
+.card {
+  display: grid;
+  margin: 5px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 14px;
+}
+
+.text-order {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -11,6 +11,14 @@ export interface IMovie {
   adult: boolean;
   date?: Date;
 }
+export interface ICard {
+  // _id: string;
+  title: string;
+  // rating: number;
+  release: string;
+  poster_details: string;
+  rating: number;
+}
 
 export interface TypeMovies {
   movies: IMovie[];

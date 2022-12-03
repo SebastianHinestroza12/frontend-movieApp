@@ -1,0 +1,21 @@
+.container-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  margin: 20px;
+}
+
+.container-poster {
+  height: 600px;
+  background-size: cover;
+}
+
+.container-img {
+  margin: 20px;
+  border: 2px solid #000;
+}
+
+.item {
+  padding: 20px;
+}
