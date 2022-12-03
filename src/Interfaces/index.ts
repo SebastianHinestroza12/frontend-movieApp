@@ -23,3 +23,10 @@ export interface ICard {
 export interface TypeMovies {
   movies: IMovie[];
 }
+
+export interface IUser {
+  name: string;
+  email: string;
+  passport: string;
+  repitePassword: string;
+}
