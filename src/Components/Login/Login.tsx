@@ -12,11 +12,14 @@ import {
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
-import { useAppDispatch } from "../../Redux/Store/hook";
+import { useAppDispatch, useAppSelector } from "../../Redux/Store/hook";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { loginUser } from "../../Redux/Slice/movie";
+import { getAllUser } from "../../Redux/Slice/user";
+import { useEffect } from "react";
+import bcrypt from "bcryptjs";
 
 type FormValues = {
   email: string;
@@ -30,9 +33,21 @@ const schema = yup
   })
   .required();
 
+const comparePassword = async (
+  password: any,
+  dbPasswordId: any
+): Promise<boolean> => {
+  return await bcrypt.compare(password, dbPasswordId);
+};
+
 export const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const dispatch: any = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAllUser());
+  }, [dispatch]);
+
   const {
     register,
     formState: { errors },
@@ -41,9 +56,16 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
+  const user = useAppSelector((state) => state.users.users);
   const toast = useToast();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    // for (let i: number = 0; i < user.length; i++) {
+    //   if (user[i].email === data.email) {
+    //     if (comparePassword(user[i].password, data.password)) {
+
+    //     }
+    //   }
+    // }
     dispatch(loginUser(data));
     toast({
       position: "top",
@@ -54,7 +76,6 @@ export const Login = () => {
     });
     navigate("/");
   };
-
   return (
     <Flex
       minH={"100vh"}

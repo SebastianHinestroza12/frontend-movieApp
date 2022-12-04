@@ -8,12 +8,21 @@ import "./Home.css";
 export const Home = () => {
   const dispatch = useAppDispatch();
   const movie = useAppSelector((state) => state.movies.movies);
+  const poster = movie[23];
   useEffect(() => {
     dispatch(getAllMovies());
-  }, [dispatch]);
+  }, []);
   return (
     <div>
-      <Poster />
+      <Poster
+        path={poster?.poster_path}
+        title={poster?.title}
+        release={poster?.release}
+        reating={poster?.rating}
+        genres={poster?.genres}
+        poster_details={poster?.poster_details}
+        description={poster?.description}
+      />
       <div className="prueba">
         {movie.map((data) => {
           return (

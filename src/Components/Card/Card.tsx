@@ -23,7 +23,7 @@ export const CardMovie: React.FC<ICard> = ({
           spacing={2}
           templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         >
-          <Card variant="filled">
+          <Card variant="filled" h={450}>
             <CardHeader>
               <Heading size="sm">{title}</Heading>
             </CardHeader>

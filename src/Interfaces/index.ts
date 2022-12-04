@@ -25,8 +25,12 @@ export interface TypeMovies {
 }
 
 export interface IUser {
-  name: string;
+  name?: string;
   email: string;
-  passport: string;
-  repitePassword: string;
+  password: string;
+  repitePassword?: string;
+}
+
+export interface TypesUser {
+  users: IUser[];
 }

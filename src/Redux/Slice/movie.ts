@@ -25,6 +25,12 @@ export const getAllMovies = () => {
     return AppDispatch(setMoviesList(json.data));
   };
 };
+export const getAllUser = () => {
+  return async function (AppDispatch: any) {
+    let json = await axios.get("http://localhost:3001/users");
+    return AppDispatch(setMoviesList(json.data));
+  };
+};
 
 export const postUser = (userData: any) => {
   return async function (AppDispatch: any) {
